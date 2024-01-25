@@ -4,35 +4,42 @@
   <h1 class="h2">Search</h1>
   <div class="btn-toolbar mb-2 mb-md 0">
     <div class="btn-group me-2">
-      <a href="/add" class="btn btn-sm btn-outline-secondary">+ New User</a>
+      <a href="/orchids/add" class="btn btn-sm btn-outline-secondary"
+        >+ New orchid</a
+      >
     </div>
   </div>
 </div>
 
 <div class="table-responsive">
-  <% if (customers != "") { %>
+  <% if (orchids != "") { %>
 
   <table class="table table-striped table-sm">
     <thead>
       <tr>
-        <th scope="col">First Name</th>
-        <th scope="col">Last Name</th>
-        <th scope="col">Tel</th>
-        <th scope="col">Email Name</th>
-        <th scope="col">Action</th>
+        <th scope="col">Orchid's Name</th>
+        <th scope="col">Picture</th>
+        <th scope="col">Price</th>
+        <th scope="col">Original</th>
+        <th scope="col">Color</th>
+        <th scope="col">Natural</th>
+        <th scope="col" class="text-end">Action</th>
       </tr>
     </thead>
+
     <tbody>
-      <% customers.forEach(element => { %>
+      <% orchids.forEach(element => { %>
       <tr class="align-middle">
-        <td><%= element.firstName %></td>
-        <td><%= element.lastName %></td>
-        <td><%= element.tel %></td>
-        <td><%= element.email %></td>
-        <td>
+        <td><%= element.name %></td>
+        <td><img src="<%= element.image %>" width="50" height="50" /></td>
+        <td>$<%= element.price %></td>
+        <td><%= element.original %></td>
+        <td><%= element.color %></td>
+        <td><%= element.isNatural ? 'Nature' : 'Mutation' %></td>
+        <td class="text-end">
           <div class="d-flex flex-row justify-content-end gap-2">
             <a
-              href="/view/<%= element._id %>"
+              href="/orchids/<%= element._id %>"
               type="button"
               class="btn btn-primary btn-small"
             >
@@ -40,7 +47,7 @@
             </a>
 
             <a
-              href="/edit/<%= element._id %>"
+              href="/orchids/edit/<%= element._id %>"
               type="button"
               class="btn btn-warning btn-small"
             >
@@ -48,7 +55,7 @@
             </a>
 
             <form
-              action="/edit/<%= element._id %>?_method=DELETE"
+              action="/orchids/<%= element._id %>?_method=DELETE"
               method="POST"
               class="position-relative"
             >

@@ -134,12 +134,12 @@ exports.searchCustomers = async (req, res) => {
   const searchNoSpecialChar = searchTerm.replace(/[^a-zA-Z0-9]/g, "");
 
   try {
-    const customers = await Orchid.find({
+    const orchids = await Orchid.find({
       $or: [
-        { firstName: { $regex: new RegExp(searchNoSpecialChar, "i") } },
-        { lastName: { $regex: new RegExp(searchNoSpecialChar, "i") } },
+        { name: { $regex: new RegExp(searchNoSpecialChar, "i") } },
+        // { lastName: { $regex: new RegExp(searchNoSpecialChar, "i") } },
       ],
     });
-    res.render("search", { customers });
+    res.render("search", { orchids });
   } catch (error) {}
 };
