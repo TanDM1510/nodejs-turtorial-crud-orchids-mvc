@@ -21,10 +21,7 @@
         </ol>
       </nav>
     </div>
-    <div class="col text-end fw-lighter">
-      <b>Last Updated: <%= new Date(customer.updatedAt).toUTCString() %></b>
-      <b>UserId:</b> <%= customer._id %>
-    </div>
+    <div class="col text-end fw-lighter"></div>
   </div>
 </div>
 
@@ -124,7 +121,7 @@
     </div>
   </div>
   <div class="form-group mb-4">
-    <button type="submit" class="btn btn-primary">Update Customer</button>
+    <button type="submit" class="btn btn-primary">Update orchids</button>
 
     <button
       type="button"
@@ -133,7 +130,7 @@
       id="deleteButton"
       data-bs-target="#deleteModal"
     >
-      Delete Customer
+      Delete orchids
     </button>
   </div>
 </form>
@@ -142,9 +139,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <div class="modal-title">
-          You are about to remove a customer record.
-        </div>
+        <div class="modal-title">You are about to remove a orchids record.</div>
         <button
           type="button"
           class="btn-close"
@@ -154,7 +149,7 @@
       </div>
       <div class="modal-body">
         <p>
-          This will remove the customer record of
+          This will remove the orchids record of
           <b class="fw-bold"><%= customer.name %> <%= customer.lastName %></b
           ><br />
           Are you sure?
@@ -170,7 +165,7 @@
           class="position-relative"
         >
           <button type="submit" class="btn btn-primary">
-            Yes, Remove Customer
+            Yes, Remove Orchid
           </button>
         </form>
       </div>

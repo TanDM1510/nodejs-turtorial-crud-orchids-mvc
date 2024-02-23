@@ -12,7 +12,7 @@ exports.homepage = async (req, res) => {
     description: "Free NodeJs User Management System",
   };
 
-  let perPage = 7;
+  let perPage = 5;
   let page = req.query.page || 1;
 
   try {
@@ -131,7 +131,8 @@ exports.delete = async (req, res) => {
 };
 exports.searchCustomers = async (req, res) => {
   let searchTerm = req.body.searchTerm;
-  const searchNoSpecialChar = searchTerm.replace(/[^a-zA-Z0-9]/g, "");
+  const searchRegex = searchTerm.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&"); // Escape special characters including whitespace
+  const searchNoSpecialChar = searchRegex.replace(/\s/g, "\\s"); // Replace whitespace with regex representation
 
   try {
     const orchids = await Orchid.find({

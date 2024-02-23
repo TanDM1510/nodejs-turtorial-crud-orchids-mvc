@@ -12,7 +12,6 @@ router.get("/", getAllCategories);
 router.get("/:id", getACategory);
 router.post("/", createACategory);
 router.put("/:id", updateACategory);
-
 router.delete("/:id", deleteACategory);
 
 module.exports = router;
