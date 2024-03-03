@@ -2,14 +2,14 @@ const express = require("express");
 const { model } = require("mongoose");
 const router = express.Router();
 const customerController = require("../controllers/orchidController");
-
-router.get("/", customerController.homepage);
-router.get("/add", customerController.addCustomer);
-router.post("/", customerController.postCustomer);
-router.get("/:id", customerController.view);
-router.get("/edit/:id", customerController.edit);
-router.put("/:id", customerController.editPost);
-router.delete("/:id", customerController.delete);
+const { ensureAuthenticated } = require("../config/auth");
+router.get("/", ensureAuthenticated, customerController.homepage);
+router.get("/add", ensureAuthenticated, customerController.addCustomer);
+router.post("/", ensureAuthenticated, customerController.postCustomer);
+router.get("/:id", ensureAuthenticated, customerController.view);
+router.get("/edit/:id", ensureAuthenticated, customerController.edit);
+router.put("/:id", ensureAuthenticated, customerController.editPost);
+router.delete("/:id", ensureAuthenticated, customerController.delete);
 router.post("/search", customerController.searchCustomers);
 
 module.exports = router;

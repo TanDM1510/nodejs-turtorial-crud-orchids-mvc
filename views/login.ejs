@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma-rtl.min.css"
+    />
+    <title>Login Page</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="columns">
+        <div class="column">
+          <img src="/images/3hoa.jpg" height="10" class="my-image" />
+        </div>
+        <div class="column">
+          <h1 class="subtitle is-1">Sign in</h1>
+          <% if(success_msg != ''){ %> <%= success_msg %> <% } %> <%
+          if(error_msg != ''){ %> <%= error %> <% } %> <% if(error != ''){ %>
+          <%= error %> <% } %>
+
+          <form method="post">
+            <div class="field">
+              <p class="control has-icons-left has-icons-right">
+                <input
+                  class="input"
+                  type="text"
+                  placeholder="Username"
+                  name="username"
+                />
+                <span class="icon is-small is-left">
+                  <i class="fas fa-envelope"></i>
+                </span>
+                <span class="icon is-small is-right">
+                  <i class="fas fa-check"></i>
+                </span>
+              </p>
+            </div>
+            <div class="field">
+              <p class="control has-icons-left">
+                <input
+                  class="input"
+                  type="password"
+                  placeholder="Password"
+                  name="password"
+                />
+                <span class="icon is-small is-left">
+                  <i class="fas fa-lock"></i>
+                </span>
+              </p>
+            </div>
+            <div class="field">
+              <p class="control">
+                <button class="button is-success">Sign in</button>
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
