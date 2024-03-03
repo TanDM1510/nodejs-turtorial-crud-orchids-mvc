@@ -1,12 +1,14 @@
-<!-- <%- include('../views/partials/header.ejs') %> -->
 <div
   class="d-flex justify-content-between flex-wrap flex-md nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
 >
   <h1 class="h2">Dashboard</h1>
   <a href="/logout" class="btn btn-sm btn-label-danger">Log out</a>
+  <a href="/profile/<%= user%>" type="button" class="btn btn-warning btn-small">
+    <i class="bi bi-pencil"></i>
+  </a>
 </div>
 <div class="d-flex justify-content-between">
-  <%- include('../views/partials/header.ejs') %>
+  <!-- <%- include('../views/partials/header.ejs') %> -->
   <div class="btn-toolbar mb-2 mb-md">
     <div class="btn-group me-2 mt-3 mb-3">
       <a href="/orchids/add" class="btn btn-sm btn-outline-secondary"

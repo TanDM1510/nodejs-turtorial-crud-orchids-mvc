@@ -6,7 +6,8 @@ exports.homepage = async (req, res) => {
   // const messages = await req.consumeFlash('info');
   // Use this instead
   const messages = await req.flash("info");
-
+  const user = req.user;
+  console.log(user, "dsad");
   const locals = {
     title: "NodeJs",
     description: "Free NodeJs User Management System",
@@ -25,6 +26,7 @@ exports.homepage = async (req, res) => {
     const count = await Orchid.countDocuments({});
 
     res.render("index", {
+      user,
       locals,
       orchids,
       current: page,

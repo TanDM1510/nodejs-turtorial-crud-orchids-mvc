@@ -11,6 +11,18 @@ const userSchema = new Schema(
       type: String,
       require: true,
     },
+    name: {
+      type: String,
+      require: true,
+    },
+    YOB: {
+      type: String,
+      require: false,
+    },
+    isAdmin: {
+      type: Boolean,
+      require: false,
+    },
   },
   { timestamps: true }
 );

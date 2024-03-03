@@ -1,17 +1,20 @@
-<!-- <%- include('../views/partials/header.ejs') %> -->
 <div
   class="d-flex justify-content-between flex-wrap flex-md nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
 >
-  <h1 class="h2">Search</h1>
-  <div class="btn-toolbar mb-2 mb-md 0">
-    <div class="btn-group me-2">
+  <h1 class="h2">Dashboard</h1>
+  <a href="/logout" class="btn btn-sm btn-label-danger">Log out</a>
+</div>
+<div class="d-flex justify-content-between">
+  <!-- <%- include('../views/partials/header.ejs') %> -->
+  <div class="btn-toolbar mb-2 mb-md">
+    <div class="btn-group me-2 mt-3 mb-3">
       <a href="/orchids/add" class="btn btn-sm btn-outline-secondary"
         >+ New orchid</a
       >
     </div>
   </div>
 </div>
-<%- include('../views/partials/header.ejs') %>
+
 <div class="table-responsive">
   <% if (orchids != "") { %>
 

@@ -12,13 +12,14 @@ module.exports = function (passport) {
           .then((user) => {
             if (!user) {
               return done(null, false, {
-                message: "This username is not registed",
+                message: "This username is not register",
               });
             }
             //Match password
             bcrypt.compare(password, user.password, (err, isMatch) => {
               if (err) throw err;
               if (isMatch) {
+                console.log(user);
                 return done(null, user);
               } else {
                 return done(null, false, { message: "Password is incorrect" });
