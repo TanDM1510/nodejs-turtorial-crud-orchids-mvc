@@ -2,13 +2,14 @@
   class="d-flex justify-content-between flex-wrap flex-md nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
 >
   <h1 class="h2">Dashboard</h1>
-  <a href="/logout" class="btn btn-sm btn-label-danger">Log out</a>
-  <a href="/profile/<%= user%>" type="button" class="btn btn-warning btn-small">
-    <i class="bi bi-pencil"></i>
-  </a>
+  <div class="d-flex">
+    <a href="/profile/<%= user %>" class="btn btn-warning btn-sm me-2">
+      <i class="bi bi-pencil"></i> Profile
+    </a>
+    <a href="/logout" class="btn btn-danger btn-sm">Logout</a>
+  </div>
 </div>
 <div class="d-flex justify-content-between">
-  <!-- <%- include('../views/partials/header.ejs') %> -->
   <div class="btn-toolbar mb-2 mb-md">
     <div class="btn-group me-2 mt-3 mb-3">
       <a href="/orchids/add" class="btn btn-sm btn-outline-secondary"
@@ -31,7 +32,7 @@
         <th scope="col">Picture</th>
         <th scope="col">Price</th>
         <!-- <th scope="col">Original</th> -->
-        <!-- <th scope="col">Category</th> -->
+        <th scope="col">Category</th>
         <th scope="col">Natural</th>
         <th scope="col" class="text-end">Action</th>
       </tr>
@@ -43,8 +44,9 @@
         <td><%= element.name %></td>
         <td><img src="<%= element.image %>" width="50" height="50" /></td>
         <td>$<%= element.price %></td>
-
+        <td><%= element.category[0]?.name%></td>
         <td><%= element.isNatural ? 'Nature' : 'Mutation' %></td>
+
         <td class="text-end">
           <div class="d-flex flex-row justify-content-end gap-2">
             <a
@@ -62,16 +64,6 @@
             >
               <i class="bi bi-pencil"></i>
             </a>
-
-            <!-- <form
-              action="/orchids/<%= element._id %>?_method=DELETE"
-              method="POST"
-              class="position-relative"
-            >
-              <button type="submit" class="btn btn-danger btn-small">
-                <i class="bi bi-person-x"></i>
-              </button>
-            </form> -->
           </div>
         </td>
       </tr>

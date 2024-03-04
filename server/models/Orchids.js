@@ -1,6 +1,18 @@
 const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
+var commentSchema = new Schema(
+  {
+    rating: { type: Number, min: 1, max: 5, require: true },
+    comment: { type: String, require: true },
+    author: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Users",
+      require: true,
+    },
+  },
+  { timestamps: true }
+);
 
 const OrchidSchema = new Schema(
   {
@@ -29,7 +41,7 @@ const OrchidSchema = new Schema(
       type: String,
       required: true,
     },
-    comments: [{ type: Schema.Types.ObjectId, ref: "Comments" }],
+    comments: [commentSchema],
     category: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Categories",
@@ -40,4 +52,8 @@ const OrchidSchema = new Schema(
     timestamps: true,
   }
 );
-module.exports = mongoose.model("Orchids", OrchidSchema);
+
+const Comment = mongoose.model("Comment", commentSchema);
+module.exports = Comment;
+const Orchid = mongoose.model("Orchids", OrchidSchema);
+module.exports = Orchid;

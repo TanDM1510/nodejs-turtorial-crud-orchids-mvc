@@ -63,7 +63,7 @@ class UserController {
   }
   signin(req, res, next) {
     passport.authenticate("local", {
-      successRedirect: "/orchids/",
+      successRedirect: "/orchids/landing",
       successFlash: "Welcome back! You are now logged in.",
       failureRedirect: "/login",
       failureFlash: true,
