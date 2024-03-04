@@ -1,9 +1,11 @@
 var express = require("express");
 const userController = require("../controllers/userController");
-const { ensureAuthenticated } = require("../config/auth");
+const {
+  ensureAuthenticated,
+  ensureAuthenticatedAdmin,
+} = require("../config/auth");
 var userRouter = express.Router();
-const bcrypt = require("bcrypt");
-const User = require("../models/users"); // Assuming your User model
+
 userRouter
   .route("/register")
   .get(userController.index)
@@ -19,5 +21,8 @@ userRouter
 
 userRouter.route("/profile/:id").get(userController.getProfile);
 userRouter.route("/:id").put(userController.updateProfile);
+userRouter
+  .route("/accounts")
+  .get(ensureAuthenticatedAdmin, userController.users);
 
 module.exports = userRouter;

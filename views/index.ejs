@@ -30,8 +30,8 @@
         <th scope="col">Orchid's Name</th>
         <th scope="col">Picture</th>
         <th scope="col">Price</th>
-        <!-- <th scope="col">Original</th>
-        <th scope="col">Color</th> -->
+        <!-- <th scope="col">Original</th> -->
+        <!-- <th scope="col">Category</th> -->
         <th scope="col">Natural</th>
         <th scope="col" class="text-end">Action</th>
       </tr>
@@ -43,8 +43,7 @@
         <td><%= element.name %></td>
         <td><img src="<%= element.image %>" width="50" height="50" /></td>
         <td>$<%= element.price %></td>
-        <!-- <td><%= element.original %></td>
-        <td><%= element.color %></td> -->
+
         <td><%= element.isNatural ? 'Nature' : 'Mutation' %></td>
         <td class="text-end">
           <div class="d-flex flex-row justify-content-end gap-2">

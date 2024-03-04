@@ -29,6 +29,12 @@ const OrchidSchema = new Schema(
       type: String,
       required: true,
     },
+    comments: [{ type: Schema.Types.ObjectId, ref: "Comments" }],
+    category: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Categories",
+      require: true,
+    },
   },
   {
     timestamps: true,

@@ -1,12 +1,12 @@
 const Orchid = require("../models/Orchids");
 const mongoose = require("mongoose");
-
+const Categories = require("../models/Categories");
 exports.homepage = async (req, res) => {
   // Remove
   // const messages = await req.consumeFlash('info');
   // Use this instead
   const messages = await req.flash("info");
-  const user = req.user;
+  const user = req.user._id;
   console.log(user, "dsad");
   const locals = {
     title: "NodeJs",
@@ -69,7 +69,10 @@ exports.postCustomer = async (req, res) => {
 
 exports.view = async (req, res) => {
   try {
-    const customer = await Orchid.findOne({ _id: req.params.id });
+    const customer = await Orchid.findOne({ _id: req.params.id }).populate(
+      "category"
+    );
+    const categoryName = customer?.category?.name;
 
     const locals = {
       title: "View Customer Data",
@@ -79,6 +82,7 @@ exports.view = async (req, res) => {
     res.render("orchids/view", {
       locals,
       customer,
+      categoryName,
     });
   } catch (error) {
     console.log(error);
@@ -86,8 +90,11 @@ exports.view = async (req, res) => {
 };
 exports.edit = async (req, res) => {
   try {
-    const customer = await Orchid.findOne({ _id: req.params.id });
-
+    const customer = await Orchid.findOne({ _id: req.params.id }).populate(
+      "category"
+    );
+    const categoryName = customer?.category?.name;
+    const allCategories = await Categories.find();
     const locals = {
       title: "Edit Customer Data",
       description: "Free NodeJs User Management System",
@@ -96,6 +103,8 @@ exports.edit = async (req, res) => {
     res.render("orchids/edit", {
       locals,
       customer,
+      categoryName,
+      allCategories,
     });
   } catch (error) {
     console.log(error);
@@ -110,9 +119,9 @@ exports.editPost = async (req, res) => {
       original: req.body.original,
       isNatural: req.body.isNatural,
       color: req.body.color,
+      category: req.body.category,
       updatedAt: Date.now(),
     });
-
     res.redirect(`/orchids/edit/${req.params.id}`);
   } catch (error) {
     console.log(error);

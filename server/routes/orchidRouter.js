@@ -9,7 +9,7 @@ const {
 router.get("/", ensureAuthenticated, customerController.homepage);
 router.get("/add", ensureAuthenticatedAdmin, customerController.addCustomer);
 router.post("/", ensureAuthenticatedAdmin, customerController.postCustomer);
-router.get("/:id", ensureAuthenticatedAdmin, customerController.view);
+router.get("/:id", ensureAuthenticated, customerController.view);
 router.get("/edit/:id", ensureAuthenticatedAdmin, customerController.edit);
 router.put("/:id", ensureAuthenticatedAdmin, customerController.editPost);
 router.delete("/:id", ensureAuthenticatedAdmin, customerController.delete);

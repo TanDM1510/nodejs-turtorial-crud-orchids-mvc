@@ -20,7 +20,7 @@ module.exports = function (passport) {
               if (err) throw err;
               if (isMatch) {
                 console.log(user);
-                return done(null, user);
+                return done(null, user, user.isAdmin);
               } else {
                 return done(null, false, { message: "Password is incorrect" });
               }
@@ -30,9 +30,10 @@ module.exports = function (passport) {
       }
     )
   );
+
   passport.serializeUser(function (user, done) {
     process.nextTick(function () {
-      done(null, user.id);
+      done(null, user);
     });
   });
 

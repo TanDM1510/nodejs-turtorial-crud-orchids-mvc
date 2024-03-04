@@ -6,12 +6,13 @@ const {
   deleteACategory,
   getACategory,
 } = require("../controllers/categoryController");
+const { ensureAuthenticatedAdmin } = require("../config/auth");
 const router = express();
 
-router.get("/", getAllCategories);
-router.get("/:id", getACategory);
-router.post("/", createACategory);
-router.put("/:id", updateACategory);
-router.delete("/:id", deleteACategory);
+router.get("/", ensureAuthenticatedAdmin, getAllCategories);
+router.get("/:id", ensureAuthenticatedAdmin, getACategory);
+router.post("/", ensureAuthenticatedAdmin, createACategory);
+router.put("/:id", ensureAuthenticatedAdmin, updateACategory);
+router.delete("/:id", ensureAuthenticatedAdmin, deleteACategory);
 
 module.exports = router;

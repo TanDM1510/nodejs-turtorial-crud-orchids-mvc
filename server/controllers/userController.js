@@ -118,6 +118,40 @@ class UserController {
       // Handle errors appropriately (e.g., log, redirect, error message)
     }
   };
+  users = async (req, res) => {
+    // Remove
+    // const messages = await req.consumeFlash('info');
+    // Use this instead
+    const messages = await req.flash("info");
+
+    const locals = {
+      title: "NodeJs",
+      description: "Free NodeJs User Management System",
+    };
+
+    let perPage = 5;
+    let page = req.query.page || 1;
+
+    try {
+      const orchids = await User.aggregate([{ $sort: { createdAt: -1 } }])
+        .skip(perPage * page - perPage)
+        .limit(perPage)
+        .exec();
+      // Count is deprecated. Use countDocuments({}) or estimatedDocumentCount()
+      // const count = await Orchids.count();
+      const count = await User.countDocuments({});
+
+      res.render("users", {
+        locals,
+        orchids,
+        current: page,
+        pages: Math.ceil(count / perPage),
+        messages,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
   dashboard(req, res) {
     res.render("index");
   }
